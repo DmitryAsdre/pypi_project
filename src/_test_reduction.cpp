@@ -12,7 +12,7 @@ double calculate_sum(const double * input, size_t size){
     return sum;
 }
 
-double calculate_sum_mp(const double * input, size_t size){
+double calculate_sum_sin_mp(const double * input, size_t size){
     double sum(0);
     #pragma omp parallel for reduction(+ : sum)
         for(size_t i = 0; i < size; i++){
@@ -21,3 +21,13 @@ double calculate_sum_mp(const double * input, size_t size){
         }
     return sum;
 }
+
+double calculate_sum_mp(const double * input, size_t size){
+    double sum(0);
+    #pragma omp parallel for reduction(+ : sum)
+        for(size_t i = 0; i < size; i++){
+            sum += input[i];
+        }
+    return sum;
+}
+
